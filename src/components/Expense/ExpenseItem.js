@@ -1,6 +1,6 @@
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
-import Card from "./wrappers/Card";
+import Card from "../wrappers/Card";
 
 export default function ExpenseItem({ date, title, amount }) {
 	return (
