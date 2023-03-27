@@ -1,5 +1,6 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
+import Card from "./wrappers/Card";
 
 import "./ExpenseList.css";
 
@@ -38,10 +39,10 @@ export default function ExpenseList() {
 		}
 	];
 	return (
-		<div className="expenseList">
+		<Card className="expenseList">
 			{expenseList.map((item) => {
 				return <ExpenseItem date={item.date} amount={item.amount} title={item.title} />;
 			})}
-		</div>
+		</Card>
 	);
 }
