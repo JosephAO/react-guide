@@ -1,9 +1,10 @@
 import ExpenseList from "./components/Expense/ExpenseList";
+import NewExpense from "./components/NewExpense/NewExpense";
 import "./App.css";
 function App() {
 	return (
 		<div>
-			<h2>Your text here</h2>
+			<NewExpense />
 			<ExpenseList />
 		</div>
 	);

@@ -41,7 +41,9 @@ export default function ExpenseList() {
 	return (
 		<Card className="expenseList">
 			{expenseList.map((item) => {
-				return <ExpenseItem date={item.date} amount={item.amount} title={item.title} />;
+				return (
+					<ExpenseItem key={item.id} date={item.date} amount={item.amount} title={item.title} />
+				);
 			})}
 		</Card>
 	);
