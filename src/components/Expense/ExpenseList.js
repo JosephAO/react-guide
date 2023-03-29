@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../wrappers/Card";
 import ExpenseFilter from "./ExpenseFilter";
@@ -6,6 +6,7 @@ import ExpenseFilter from "./ExpenseFilter";
 import "./ExpenseList.css";
 
 export default function ExpenseList() {
+	const [filterYear, setFilterYear] = useState(2020);
 	const expenseList = [
 		{
 			id: "e1",
@@ -41,12 +42,12 @@ export default function ExpenseList() {
 	];
 
 	const selectYearHandler = (e) => {
-		console.log(e.target.value);
+		setFilterYear(e.target.value);
 	};
 
 	return (
 		<Card className="expenseList">
-			<ExpenseFilter onYearSelection={selectYearHandler} />
+			<ExpenseFilter setYear={filterYear} onYearSelection={selectYearHandler} />
 			{expenseList.map((item) => {
 				return (
 					<ExpenseItem key={item.id} date={item.date} amount={item.amount} title={item.title} />
