@@ -1,6 +1,7 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../wrappers/Card";
+import ExpenseFilter from "./ExpenseFilter";
 
 import "./ExpenseList.css";
 
@@ -38,8 +39,14 @@ export default function ExpenseList() {
 			amount: 1710.34
 		}
 	];
+
+	const selectYearHandler = (e) => {
+		console.log(e.target.value);
+	};
+
 	return (
 		<Card className="expenseList">
+			<ExpenseFilter onYearSelection={selectYearHandler} />
 			{expenseList.map((item) => {
 				return (
 					<ExpenseItem key={item.id} date={item.date} amount={item.amount} title={item.title} />
