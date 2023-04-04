@@ -21,6 +21,9 @@ const ExpenseFilter = ({ setYear, onYearSelection }) => {
 			<div className="expenses-filter__control">
 				<label>Filter by year</label>
 				<select value={setYear} onChange={onYearSelection}>
+					<option key={0} value={"all"}>
+						ALL
+					</option>
 					{yearList()}
 				</select>
 			</div>

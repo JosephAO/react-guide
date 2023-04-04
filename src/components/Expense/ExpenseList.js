@@ -5,54 +5,24 @@ import ExpenseFilter from "./ExpenseFilter";
 
 import "./ExpenseList.css";
 
-export default function ExpenseList() {
-	const [filterYear, setFilterYear] = useState(2020);
-	const expenseList = [
-		{
-			id: "e1",
-			title: "Toilet Paper",
-			amount: 94.12,
-			date: new Date(2020, 7, 14)
-		},
-		{ id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-		{
-			id: "e3",
-			title: "Car Insurance",
-			amount: 294.67,
-			date: new Date(2021, 2, 28)
-		},
-		{
-			id: "e4",
-			title: "New Desk (Wooden)",
-			amount: 450,
-			date: new Date(2021, 5, 12)
-		},
-		{
-			id: "e5",
-			date: new Date(2023, 4, 5),
-			title: "Rent",
-			amount: 1700.0
-		},
-		{
-			id: "e6",
-			date: new Date(2023, 5, 1),
-			title: "Rent",
-			amount: 1710.34
-		}
-	];
+export default function ExpenseList({ expenseList }) {
+	const [filterYear, setFilterYear] = useState("2020");
 
 	const selectYearHandler = (e) => {
 		setFilterYear(e.target.value);
 	};
 
+	const filteredList =
+		filterYear !== "all"
+			? expenseList.filter((item) => item.date.getFullYear().toString() === filterYear)
+			: expenseList;
+
 	return (
 		<Card className="expenseList">
 			<ExpenseFilter setYear={filterYear} onYearSelection={selectYearHandler} />
-			{expenseList.map((item) => {
-				return (
-					<ExpenseItem key={item.id} date={item.date} amount={item.amount} title={item.title} />
-				);
-			})}
+			{filteredList.map((item) => (
+				<ExpenseItem key={item.id} date={item.date} amount={item.amount} title={item.title} />
+			))}
 		</Card>
 	);
 }
