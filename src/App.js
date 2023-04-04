@@ -39,6 +39,7 @@ function App() {
 	];
 
 	const [expenseList, setExpenseList] = useState(initialList);
+	const [showAddExpenseCard, setShowAddExpenseCard] = useState(false);
 
 	const addNewExpense = (expenseObj) => {
 		setExpenseList((prevState) => [expenseObj, ...prevState]);
@@ -46,7 +47,11 @@ function App() {
 
 	return (
 		<div>
-			<NewExpense addNewExpense={addNewExpense} />
+			<NewExpense
+				expanded={showAddExpenseCard}
+				setExpanded={setShowAddExpenseCard}
+				addNewExpense={addNewExpense}
+			/>
 			<ExpenseList expenseList={expenseList} />
 		</div>
 	);

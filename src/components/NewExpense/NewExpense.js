@@ -1,8 +1,9 @@
 import React from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
+import ExpenseFormStub from "./ExpenseFormStub";
 
-const NewExpense = ({ addNewExpense }) => {
+const NewExpense = ({ expanded, setExpanded, addNewExpense }) => {
 	const newEntryHandler = (newData) => {
 		const newId = Math.ceil(Math.random() * 10000).toString();
 
@@ -10,9 +11,17 @@ const NewExpense = ({ addNewExpense }) => {
 		addNewExpense(expenseData);
 	};
 
+	const expandStubHandler = (setShowForm) => {
+		setExpanded(setShowForm);
+	};
+
 	return (
 		<div className="new-expense">
-			<ExpenseForm onSaveNewEntry={newEntryHandler} />
+			{expanded ? (
+				<ExpenseForm onCancel={() => expandStubHandler(false)} onSaveNewEntry={newEntryHandler} />
+			) : (
+				<ExpenseFormStub onExpandStub={() => expandStubHandler(true)} />
+			)}
 		</div>
 	);
 };
