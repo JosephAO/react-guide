@@ -11,8 +11,8 @@ const NewExpense = ({ expanded, setExpanded, addNewExpense }) => {
 		addNewExpense(expenseData);
 	};
 
-	const expandStubHandler = (setShowForm) => {
-		setExpanded(setShowForm);
+	const expandStubHandler = (booleanShowForm) => {
+		setExpanded(booleanShowForm);
 	};
 
 	return (

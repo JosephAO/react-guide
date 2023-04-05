@@ -5,7 +5,7 @@ import "./ExpenseForm.css";
 const ExpenseForm = ({ onSaveNewEntry, onCancel }) => {
 	const [input, setInput] = useState({
 		title: "",
-		amount: "",
+		amount: +null,
 		date: ""
 	});
 
@@ -16,7 +16,7 @@ const ExpenseForm = ({ onSaveNewEntry, onCancel }) => {
 
 	const setAmountHandler = (e) =>
 		setInput((prevState) => {
-			return { ...prevState, amount: e.target.value };
+			return { ...prevState, amount: +e.target.value };
 		});
 
 	const setDateHandler = (e) =>
@@ -66,7 +66,9 @@ const ExpenseForm = ({ onSaveNewEntry, onCancel }) => {
 			</div>
 
 			<div className="new-expense__actions">
-				<button onClick={cancelFormHandler}>Cancel</button>
+				<button type="button" onClick={cancelFormHandler}>
+					Cancel
+				</button>
 				<button type="submit">Add Expense</button>
 			</div>
 		</form>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+
 import ExpenseItem from "./ExpenseItem";
 import Card from "../wrappers/Card";
 import ExpenseFilter from "./ExpenseFilter";
+import ExpenseChart from "./ExpenseChart";
 
 import "./ExpenseList.css";
 
@@ -17,12 +19,12 @@ export default function ExpenseList({ expenseList }) {
 			? expenseList.filter((item) => item.date.getFullYear().toString() === filterYear)
 			: expenseList;
 
-	let expenseListContent = (
+	let displayContent = (
 		<h2 className="expenses-list__fallback">{`No expenses found for ${filterYear}.`}</h2>
 	);
 
 	if (filteredList.length > 0) {
-		expenseListContent = filteredList.map((item) => (
+		displayContent = filteredList.map((item) => (
 			<ExpenseItem key={item.id} date={item.date} amount={item.amount} title={item.title} />
 		));
 	}
@@ -30,7 +32,8 @@ export default function ExpenseList({ expenseList }) {
 	return (
 		<Card className="expenseList">
 			<ExpenseFilter setYear={filterYear} onYearSelection={selectYearHandler} />
-			{expenseListContent}
+			<ExpenseChart expenseList={filteredList} />
+			{displayContent}
 		</Card>
 	);
 }
